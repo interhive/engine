@@ -11,6 +11,8 @@ gem 'uglifier',     '>= 2.5.3'
 
 gem 'coveralls',    '~> 0.8.19', require: false
 
+gem 'locomotivecms_steam', git: 'https://github.com/interhive/steam', branch: 'per-site-asset-host', require: false
+
 group :test, :development do
   gem 'rspec-rails', '~> 3.5.2' #~> 2.14.2' # In order to have rspec tasks and generators
   gem 'pry'
@@ -24,7 +26,7 @@ group :development do
   # gem 'locomotivecms_common', github: 'locomotivecms/common', ref: '257047b', require: false
 
   # gem 'locomotivecms_steam', path: '/Users/cgrant/Code/locomotive/development/steam', require: false
-  gem 'locomotivecms_steam', git: 'https://github.com/interhive/steam', branch: 'per-site-asset-host', require: false
+  # gem 'locomotivecms_steam', git: 'https://github.com/interhive/steam', branch: 'per-site-asset-host', require: false
 
   # gem 'locomotive_liquid', path: '../gems/liquid' # for Developers
   # gem 'locomotivecms_solid', path: '../gems/solid' # for Developers
