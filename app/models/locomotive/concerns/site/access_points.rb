@@ -23,6 +23,7 @@ module Locomotive
           validates_exclusion_of    :handle, in: Locomotive.config.reserved_site_handles
           validates_format_of       :handle, with: Locomotive::Regexps::HANDLE, allow_blank: true,
             multiline: true
+          validates_format_of       :asset_host, with: Locomotive::Regexps::DOMAIN, allow_nil: true
           validate                  :domains_must_be_valid_and_unique
           validate                  :domains_must_not_be_reserved
           validate                  :asset_host_must_be_valid
@@ -79,14 +80,6 @@ module Locomotive
             if not domain =~ Locomotive::Regexps::DOMAIN
               self.errors.add(:domains, :invalid_domain, value: domain)
             end
-          end
-        end
-
-        def asset_host_must_be_valid
-          return if self.asset_host && self.asset_host.empty?
-
-          if not asset_host =~ Locomotive::Regexps::DOMAIN
-            self.errors.add(:asset_host, :invalid_domain, value: asset_host)
           end
         end
 
