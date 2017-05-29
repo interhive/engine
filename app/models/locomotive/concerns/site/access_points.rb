@@ -25,7 +25,7 @@ module Locomotive
             multiline: true
           validate                  :domains_must_be_valid_and_unique
           validate                  :domains_must_not_be_reserved
-          # validate                  :asset_host_must_be_valid
+          validate                  :asset_host_must_be_valid
 
           ## callbacks ##
           before_validation :prepare_domain_sync
@@ -82,13 +82,13 @@ module Locomotive
           end
         end
 
-        # def asset_host_must_be_valid
-        #   return unless self.asset_host
+        def asset_host_must_be_valid
+          return unless self.asset_host or self.asset_host.blank?
 
-        #   if not asset_host =~ Locomotive::Regexps::DOMAIN
-        #     self.errors.add(:asset_host, :invalid_domain, value: asset_host)
-        #   end
-        # end
+          if not asset_host =~ Locomotive::Regexps::DOMAIN
+            self.errors.add(:asset_host, :invalid_domain, value: asset_host)
+          end
+        end
 
         def domains_must_not_be_reserved
           return if self.domains.empty? || Locomotive.config.reserved_domains.blank?
