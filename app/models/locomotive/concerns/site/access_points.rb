@@ -85,7 +85,7 @@ module Locomotive
         def asset_host_must_be_valid
           return if self.asset_host.blank?
 
-          if not (asset_host =~ Locomotive::Regexps::DOMAIN or asset_host =~ Locomotive::Regexps::URL)
+          if not asset_host =~ Locomotive::Regexps::ASSET_HOST
             self.errors.add(:asset_host, :invalid_domain, value: asset_host)
           end
         end
